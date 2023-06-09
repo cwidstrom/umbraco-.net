@@ -31,5 +31,4 @@ jobs:
           #Mandatory if coverity_automation_prcomment is set to true
           #github_token: ${{ secrets.GITHUB_TOKEN }}
    
-name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
+
