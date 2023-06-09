@@ -11,12 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '4.0.30319'
-      - name: Install dependencies
-        run: dotnet restore "umbraco.sln"
+
 
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v1.2.0
