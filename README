@@ -1,0 +1,3 @@
+Automatic invocation of aspnet_compiler of Umbraco.Web.UI failed due to compiler issue.
+
+Manuelly invoke aspnet_compiler by modifying coverity-build.dat and unified-cs-build.sh
