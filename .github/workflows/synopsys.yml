@@ -7,9 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '4.0.x' ]
+      
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
 
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v1.2.0
@@ -27,3 +37,19 @@ jobs:
           #coverity_automation_prcomment: true
           #Mandatory if coverity_automation_prcomment is set to true
           #github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+          
+          runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
