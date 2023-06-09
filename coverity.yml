@@ -1,7 +1,7 @@
 capture:
   build:
-    clean-command: dotnet clean "umbraco.sln"
-    build-command: dotnet build "umbraco.sln"   
+   # clean-command: dotnet clean "umbraco.sln"
+    build-command: MSBuild.exe ./umbraco.sln /t:build   
 
 analyze:
   aggressiveness-level: high
