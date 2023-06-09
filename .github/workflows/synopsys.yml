@@ -16,7 +16,7 @@ jobs:
         with:
           dotnet-version: '3.1.x'
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore "umbraco.sln"
 
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v1.2.0
