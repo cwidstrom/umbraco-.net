@@ -1,0 +1,29 @@
+name: Synopsys Security Testing
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main, develop ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Synopsys Action
+        uses: synopsys-sig/synopsys-action@v1.2.0
+        with:
+          coverity_url: ${{ secrets.COVERITY_URL }}
+          coverity_user: ${{ secrets.COVERITY_USER }}
+          coverity_passphrase: ${{ secrets.COVERITY_PASSPHRASE }}
+          coverity_project_name: "umbraco.net"
+          coverity_stream_name: "umbraco.net"
+          
+          #Optional- you may specify the ID number of a saved view to apply as a "break the build" policy.
+          #coverity_policy_view: 100001
+          
+          #Optional- To enable feedback from Coverity security testing as pull request comment
+          #coverity_automation_prcomment: true
+          #Mandatory if coverity_automation_prcomment is set to true
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
